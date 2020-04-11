@@ -18,7 +18,7 @@ public class ManagerDAO {
         List<Manager> managers = new ArrayList<Manager>();
         String depName = "";
 
-        String sql = " select emp.*,dp.dept_name as department_name from employees emp " +
+        String sql = " select emp.* , dp.dept_name as department_name from employees emp " +
                 " left join dept_manager dm on dm.emp_no = emp.emp_no " +
                 " left join departments dp on dp.dept_no = dm.dept_no " +
                 " where dm.to_date >= " + new java.sql.Date(new java.util.Date().getTime());

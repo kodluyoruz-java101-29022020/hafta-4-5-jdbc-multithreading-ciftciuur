@@ -103,12 +103,12 @@ public class Application {
         for (Manager manager : allManager) {
             StringBuilder builder = new StringBuilder();
             builder.append("Aktif Yönetici adı : ");
-            builder.append(" ");
+            builder.append(" | ");
             builder.append(manager.getEmployee().getName());
-            builder.append(" ");
+            builder.append(" | ");
             builder.append("Aktif yönetici departmanı :");
             builder.append(manager.getDepartmentName());
-            System.out.println(builder);
+            System.out.println(builder.toString());
         }
     }
 
