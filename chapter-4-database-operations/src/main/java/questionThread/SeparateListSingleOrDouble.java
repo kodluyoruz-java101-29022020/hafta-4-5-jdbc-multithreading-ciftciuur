@@ -7,9 +7,8 @@ public class SeparateListSingleOrDouble implements Runnable {
     private List<Integer> tempArrayList;
     private List<Integer> singleArrayList = new ArrayList<>();
     private List<Integer> doubleArrayList = new ArrayList<>();
-
-
     private Object LOCK = new Object();
+    private int counter = 0;
 
     private boolean running = true;
 
@@ -19,28 +18,36 @@ public class SeparateListSingleOrDouble implements Runnable {
     }
 
     public void terminate() {
-        running = false;
+        this.running = false;
     }
 
     @Override
     public void run() {
+
         while (this.running) {
-            System.out.println(tempArrayList.size());
             String threadName = Thread.currentThread().getName();
             System.out.println("My summation " + threadName + " is started!");
 
-            for (Integer item : tempArrayList) {
-                if (item % 2 == 0) {
-                    addListNewElement(doubleArrayList, item);
-                } else {
-                    addListNewElement(singleArrayList, item);
+            for (int i = 0; i < tempArrayList.size(); i++) {
+                synchronized (LOCK) {
+                    if (tempArrayList.get(i) % 2 == 0) {
+                        addListNewElement(doubleArrayList, tempArrayList.get(i));
+                    } else {
+                        addListNewElement(singleArrayList, tempArrayList.get(i));
+                    }
+                }
+                synchronized (LOCK) {
+                    this.counter++;
+                    if (counter == 10000) {
+                        terminate();
+                        break;
+                    }
                 }
             }
-
         }
     }
 
-    synchronized void addListNewElement(List<Integer> addElementsList, Integer element) {
+    private synchronized void addListNewElement(List<Integer> addElementsList, Integer element) {
         addElementsList.add(element);
     }
 

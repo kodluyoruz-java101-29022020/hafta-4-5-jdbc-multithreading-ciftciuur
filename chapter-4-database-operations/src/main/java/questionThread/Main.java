@@ -6,12 +6,17 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        SeparateListSingleOrDouble first = new SeparateListSingleOrDouble(fillArrayList().subList(0, 2500));
 
-        Thread firstArray = new Thread(first);
-        firstArray.start();
-        System.out.println(first.getDoubleArrayList().size());
-        System.out.println(first.getSingleArrayList().size());
+        int first = 0, second = 2500;
+        for (int i = 0; i < 4; i++) {
+            SeparateListSingleOrDouble separateListSingleOrDouble = new SeparateListSingleOrDouble(fillArrayList().subList(first, second));
+            Thread thread = new Thread(separateListSingleOrDouble);
+            thread.start();
+            first += 2500;
+            second += 2500;
+        }
+
+
     }
 
     public static List<Integer> fillArrayList() {
