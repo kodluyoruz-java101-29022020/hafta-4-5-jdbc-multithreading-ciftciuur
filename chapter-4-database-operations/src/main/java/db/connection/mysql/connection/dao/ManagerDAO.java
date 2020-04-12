@@ -37,8 +37,8 @@ public class ManagerDAO {
         }
 
         /*
-            TODO : Bir İpucu
-            TODO :  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ----> eğer bu hatayı alıyorsanız sql 'de + ile birleştirme işlemi yaparken boşluk bırakmayı unutmayın her + dan sonra
+             Bir İpucu
+            "  You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near " ----> eğer bu hatayı alıyorsanız sql 'de + ile birleştirme işlemi yaparken boşluk bırakmayı unutmayın her + dan sonra
          */
 
 

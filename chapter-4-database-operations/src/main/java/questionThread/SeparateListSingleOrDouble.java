@@ -1,5 +1,6 @@
 package questionThread;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,27 +24,37 @@ public class SeparateListSingleOrDouble implements Runnable {
 
     @Override
     public void run() {
-
         while (this.running) {
             String threadName = Thread.currentThread().getName();
             System.out.println("My summation " + threadName + " is started!");
 
+
             for (int i = 0; i < tempArrayList.size(); i++) {
-                synchronized (LOCK) {
-                    if (tempArrayList.get(i) % 2 == 0) {
-                        addListNewElement(doubleArrayList, tempArrayList.get(i));
-                    } else {
-                        addListNewElement(singleArrayList, tempArrayList.get(i));
-                    }
+                System.out.println("Sayı alındı");
+                if (tempArrayList.get(i) % 2 == 0) {
+                    addListNewElement(doubleArrayList, tempArrayList.get(i));
+                    System.out.println(tempArrayList.get(i) + " -> sayısı çift");
+                } else {
+                    addListNewElement(singleArrayList, tempArrayList.get(i));
+                    System.out.println(tempArrayList.get(i) + " -> sayısı tek");
                 }
-                synchronized (LOCK) {
-                    this.counter++;
-                    if (counter == 10000) {
-                        terminate();
-                        break;
-                    }
-                }
+                System.out.println("Sayı gönderildi -> " + tempArrayList.get(i));
+                sleep(50);
+                counter++;
             }
+            if (counter == 70) {
+                System.out.println("DURMASI GEREKIYORR !!");
+                terminate();
+                break;
+            }
+        }
+    }
+
+    public static void sleep(long milliseconds) {
+        try {
+            Thread.sleep(milliseconds);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
