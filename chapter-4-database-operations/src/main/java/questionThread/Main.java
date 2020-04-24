@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         List<Integer> tempArray = fillArrayList();
         ThreadPoolExecutor threadPoolExecutor = (ThreadPoolExecutor) Executors.newFixedThreadPool(4);
-        int first = 0, second = 10;
+        int first = 0, second = 2500;
         for (int i = 0; i < 4; i++) {
             SeparateListSingleOrDouble separateListSingleOrDouble = new SeparateListSingleOrDouble(tempArray.subList(first, second));
             first += 10;
